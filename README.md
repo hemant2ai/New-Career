@@ -1,10 +1,5 @@
-# New-Career
-Create a world where you can find new job or new career during AI Crisis.
 import pandas as pd
 
-# ==============================
-# AI Career Survival Guide v0.1
-# ==============================
 
 def calculate_crs(row):
     """
@@ -42,16 +37,17 @@ def main():
     # Calculate CRS
     df["CRS"] = df.apply(calculate_crs, axis=1)
 
-    # Add Risk Category
+    # Categorize careers
     df["Category"] = df["CRS"].apply(categorize_risk)
 
     # Sort by CRS
     df_sorted = df.sort_values(by="CRS", ascending=False)
 
-    # Display Top 10 Careers
+    # Display Top 10
     print("Top 10 Most Resilient Careers:\n")
     print(df_sorted[["career", "CRS", "Category"]].head(10).to_string(index=False))
 
+    # Display Bottom 5
     print("\nBottom 5 High-Risk Careers:\n")
     print(df_sorted[["career", "CRS", "Category"]].tail(5).to_string(index=False))
 
